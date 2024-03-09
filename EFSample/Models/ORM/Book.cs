@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace EFSample.Models.ORM
 {
-    public class Book
+    public class Book : BaseModel
     {
-        public int Id { get; set; }
 
         [MaxLength(100)]
         public string? Name { get; set; }

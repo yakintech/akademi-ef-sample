@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace EFSample.Models.ORM
 {
-    public class AdminUser
+    public class AdminUser : BaseModel
     {
-        public int Id { get; set; }
         public string EMail { get; set; }
         public string Password { get; set; }
     }
