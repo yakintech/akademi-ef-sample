@@ -4,6 +4,7 @@ using EFSample.Models.ORM;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFSample.Migrations
 {
     [DbContext(typeof(AkademiLibraryContext))]
-    partial class AkademiLibraryContextModelSnapshot : ModelSnapshot
+    [Migration("20240309101558_publisherBookFK")]
+    partial class publisherBookFK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,7 +49,7 @@ namespace EFSample.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdminUsers", (string)null);
+                    b.ToTable("AdminUsers");
                 });
 
             modelBuilder.Entity("EFSample.Models.ORM.Book", b =>
@@ -85,7 +88,7 @@ namespace EFSample.Migrations
 
                     b.HasIndex("PublisherId");
 
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("EFSample.Models.ORM.Category", b =>
@@ -108,7 +111,7 @@ namespace EFSample.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("EFSample.Models.ORM.Publisher", b =>
@@ -135,7 +138,7 @@ namespace EFSample.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publishers", (string)null);
+                    b.ToTable("Publishers");
                 });
 
             modelBuilder.Entity("EFSample.Models.ORM.Book", b =>

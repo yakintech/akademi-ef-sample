@@ -89,6 +89,7 @@
             Controls.Add(label1);
             Name = "FrmAddBook";
             Text = "FrmAddBook";
+            Load += FrmAddBook_Load;
             ResumeLayout(false);
             PerformLayout();
         }

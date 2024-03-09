@@ -4,6 +4,7 @@ using EFSample.Models.ORM;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFSample.Migrations
 {
     [DbContext(typeof(AkademiLibraryContext))]
-    partial class AkademiLibraryContextModelSnapshot : ModelSnapshot
+    [Migration("20240309101314_PublisherTableCrated")]
+    partial class PublisherTableCrated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,7 +49,7 @@ namespace EFSample.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AdminUsers", (string)null);
+                    b.ToTable("AdminUsers");
                 });
 
             modelBuilder.Entity("EFSample.Models.ORM.Book", b =>
@@ -73,9 +76,6 @@ namespace EFSample.Migrations
                     b.Property<DateTime>("PublishDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("PublisherId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Writer")
                         .HasColumnType("nvarchar(max)");
 
@@ -83,9 +83,7 @@ namespace EFSample.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("PublisherId");
-
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("EFSample.Models.ORM.Category", b =>
@@ -108,7 +106,7 @@ namespace EFSample.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("EFSample.Models.ORM.Publisher", b =>
@@ -135,7 +133,7 @@ namespace EFSample.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publishers", (string)null);
+                    b.ToTable("Publishers");
                 });
 
             modelBuilder.Entity("EFSample.Models.ORM.Book", b =>
@@ -144,13 +142,7 @@ namespace EFSample.Migrations
                         .WithMany()
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("EFSample.Models.ORM.Publisher", "Publisher")
-                        .WithMany()
-                        .HasForeignKey("PublisherId");
-
                     b.Navigation("Category");
-
-                    b.Navigation("Publisher");
                 });
 #pragma warning restore 612, 618
         }

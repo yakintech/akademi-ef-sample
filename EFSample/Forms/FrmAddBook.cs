@@ -32,5 +32,10 @@ namespace EFSample.Forms
 
             MessageBox.Show("Book added successfully");
         }
+
+        private void FrmAddBook_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
