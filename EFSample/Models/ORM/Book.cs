@@ -15,7 +15,9 @@ namespace EFSample.Models.ORM
         public DateTime PublishDate { get; set; }
         public string? Writer { get; set; }
 
-        public int?  CategoryId { get; set; }
+        public int? CategoryId { get; set; }
+
+        public decimal UnitPrice { get; set; }
 
         [ForeignKey("CategoryId")]
         public Category? Category { get; set; }

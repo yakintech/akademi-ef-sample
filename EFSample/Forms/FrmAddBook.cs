@@ -36,6 +36,7 @@ namespace EFSample.Forms
         private void FrmAddBook_Load(object sender, EventArgs e)
         {
 
+
         }
     }
 }
