@@ -4,6 +4,7 @@ using EFSample.Models.ORM;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFSample.Migrations
 {
     [DbContext(typeof(AkademiLibraryContext))]
-    partial class AkademiLibraryContextModelSnapshot : ModelSnapshot
+    [Migration("20240310082340_SupplierTableFK2")]
+    partial class SupplierTableFK2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,35 +92,6 @@ namespace EFSample.Migrations
                     b.HasIndex("PublisherId");
 
                     b.ToTable("Books");
-                });
-
-            modelBuilder.Entity("EFSample.Models.ORM.BookSupplier", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("AddDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("SupplierId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("SupplierId");
-
-                    b.ToTable("BookSuppliers");
                 });
 
             modelBuilder.Entity("EFSample.Models.ORM.Category", b =>
@@ -208,7 +182,7 @@ namespace EFSample.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CityId")
+                    b.Property<int?>("CityId")
                         .HasColumnType("int");
 
                     b.Property<string>("CompanyName")
@@ -240,34 +214,11 @@ namespace EFSample.Migrations
                     b.Navigation("Publisher");
                 });
 
-            modelBuilder.Entity("EFSample.Models.ORM.BookSupplier", b =>
-                {
-                    b.HasOne("EFSample.Models.ORM.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EFSample.Models.ORM.Supplier", "Supplier")
-                        .WithMany()
-                        .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("Supplier");
-                });
-
             modelBuilder.Entity("EFSample.Models.ORM.Supplier", b =>
                 {
-                    b.HasOne("EFSample.Models.ORM.City", "City")
+                    b.HasOne("EFSample.Models.ORM.City", null)
                         .WithMany("Suppliers")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("City");
+                        .HasForeignKey("CityId");
                 });
 
             modelBuilder.Entity("EFSample.Models.ORM.City", b =>

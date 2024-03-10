@@ -22,7 +22,7 @@ namespace EFSample.Models.ORM
         [ForeignKey("CategoryId")]
         public Category? Category { get; set; }
 
-
+        //Yayinevi
         public int? PublisherId { get; set; }
 
         [ForeignKey("PublisherId")]

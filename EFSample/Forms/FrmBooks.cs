@@ -81,8 +81,11 @@ namespace EFSample.Forms
                 return;
             }   
 
-            decimal minPrice = Convert.ToDecimal(txtMinPrice.Text);
-            decimal maxPrice = Convert.ToDecimal(txtMaxPrice.Text);
+            //decimal minPrice = Convert.ToDecimal(txtMinPrice.Text);
+            //decimal maxPrice = Convert.ToDecimal(txtMaxPrice.Text);
+            decimal minPrice = decimal.TryParse(txtMinPrice.Text, out decimal min) ? min : 0;
+            decimal maxPrice = decimal.TryParse(txtMaxPrice.Text, out decimal max) ? max : 0;
+
 
             AkademiLibraryContext db = new AkademiLibraryContext();
             List<Book> books = db.Books.Where(x => x.UnitPrice >= minPrice && x.UnitPrice <= maxPrice).ToList();

@@ -18,5 +18,9 @@ namespace EFSample.Models.ORM
         public DbSet<AdminUser> AdminUsers { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+
+        public DbSet<City> Cities { get; set; }
+        public DbSet<BookSupplier> BookSuppliers { get; set; }
     }
 }
