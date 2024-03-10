@@ -62,5 +62,32 @@ namespace EFSample.Forms
             List<Book> books = db.Books.OrderByDescending(x => x.Name).ToList();
             dataGridView1.DataSource = books;
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string search = txtSearch.Text.Trim();
+            AkademiLibraryContext db = new AkademiLibraryContext();
+            //List<Book> books = db.Books.Where(x => x.Name.Contains(search)).ToList();
+            List<Book> books = db.Books.Where(x => x.Name.StartsWith(search)).ToList();
+
+            dataGridView1.DataSource = books;
+        }
+
+        private void btnSearchByPrice_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(txtMinPrice.Text) || string.IsNullOrEmpty(txtMaxPrice.Text))
+            {
+                MessageBox.Show("Please enter min and max price");
+                return;
+            }   
+
+            decimal minPrice = Convert.ToDecimal(txtMinPrice.Text);
+            decimal maxPrice = Convert.ToDecimal(txtMaxPrice.Text);
+
+            AkademiLibraryContext db = new AkademiLibraryContext();
+            List<Book> books = db.Books.Where(x => x.UnitPrice >= minPrice && x.UnitPrice <= maxPrice).ToList();
+
+            dataGridView1.DataSource = books;
+        }
     }
 }
